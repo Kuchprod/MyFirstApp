@@ -75,7 +75,6 @@ class MasterViewController: UITableViewController {
 
         let object = objects[indexPath.row]
         cell.textLabel!.text = object.name
-        cell.detailTextLabel!.text = object.forename
         return cell
     }
 
