@@ -16,6 +16,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var mail: UILabel!
     @IBOutlet weak var phone: UILabel!
+    @IBOutlet weak var addr: UILabel!
     @IBOutlet weak var desk: UILabel!
     @IBOutlet weak var webLink: UILabel!
 
@@ -33,7 +34,7 @@ class DetailViewController: UIViewController {
             name.text = contact.name
         }
         if let forename = self.forename {
-            forename.text = contact.name
+            forename.text = contact.forename
         }
         if let image = self.image {
             Swift.print(contact.picture)
@@ -52,6 +53,9 @@ class DetailViewController: UIViewController {
         }
         if let phone = self.phone {
             phone.text = contact.phone
+        }
+        if let addr = self.addr {
+            addr.text = contact.address
         }
         if let desk = self.desk {
             desk.text = contact.desk
