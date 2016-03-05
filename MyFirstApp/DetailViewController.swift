@@ -10,7 +10,11 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
-    @IBOutlet weak var detailDescriptionLabel: UILabel!
+    var contact = Contact()
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var forename: UILabel!
+    @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var mail: UILabel!
 
     var detailItem: AnyObject? {
         didSet {
@@ -21,10 +25,22 @@ class DetailViewController: UIViewController {
 
     func configureView() {
         // Update the user interface for the detail item.
-        if let detail = self.detailItem {
-            if let label = self.detailDescriptionLabel {
-                label.text = detail.description
+        if let detail = self.detailItem as? Contact {
+            /*if let image = self.image {
+                let url = NSURL(string: detail.description)
+                let data = NSData(contentsOfURL: url!)
+                image.image = UIImage(data: data!)
+            }*/
+            if let name = self.name {
+                name.text = detail.name
             }
+            /*
+            if let email = mail {
+                let email = detail.mail
+                let url = NSURL(string: "mailto:\(email)")
+                UIApplication.sharedApplication().openURL(url)
+            }
+*/
         }
     }
 

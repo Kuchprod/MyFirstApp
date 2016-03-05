@@ -28,6 +28,7 @@ class MasterViewController: UITableViewController {
             let controllers = split.viewControllers
             self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
+
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -51,9 +52,9 @@ class MasterViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                let object = objects[indexPath.row] 
+                let contact = objects[indexPath.row]
                 let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
-                controller.detailItem = object.description
+                controller.detailItem = contact.name
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
@@ -71,10 +72,33 @@ class MasterViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! CustomCell
 
+        if indexPath.item % 2 == 0 {
+            cell.backgroundColor = UIColor.grayColor().colorWithAlphaComponent(0.2)
+        }
+        else {
+            cell.backgroundColor = UIColor.clearColor()
+        }
+        
         let object = objects[indexPath.row]
-        cell.textLabel!.text = object.name
+        cell.contact = object
+        cell.name.text = object.name
+        cell.forename.text = object.forename
+        /*
+        let urlImg = object.picture
+        Swift.print(urlImg)
+        if urlImg != "" {
+            Swift.print("ok")
+            let url = NSURL(string: urlImg)
+            let data = NSData(contentsOfURL: url!)
+            cell.imageCell.image = UIImage(data: data!)
+        }
+        else{
+            Swift.print("Empty")
+            cell.imageCell.image = UIImage(named: "Silhouette_Portrait")
+        }
+        */
         return cell
     }
 

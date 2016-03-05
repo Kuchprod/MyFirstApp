@@ -38,7 +38,7 @@ class Parse : NSObject, NSXMLParserDelegate {
         element = elementName
         //Swift.print("title = \(element)")
         if (elementName as NSString).isEqualToString("teacher"){
-            Swift.print("\n(didStartElement) New Person")
+            //Swift.print("\n(didStartElement) New Person")
         }
     }
     
@@ -104,7 +104,7 @@ class Parse : NSObject, NSXMLParserDelegate {
 			website = ""
 			picture = ""
 			
-			Swift.print(contact.description)
+			//Swift.print(contact.description)
 			o.append(contact)
         }
     }
