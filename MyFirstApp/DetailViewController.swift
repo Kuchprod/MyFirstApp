@@ -14,11 +14,13 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var forename: UILabel!
     @IBOutlet weak var image: UIImageView!
-    @IBOutlet weak var mail: UILabel!
-    @IBOutlet weak var phone: UILabel!
-    @IBOutlet weak var addr: UILabel!
+    @IBOutlet weak var mail: MailButton!
+    @IBOutlet weak var phone: CallButton!
+    @IBOutlet weak var addr: MapButton!
     @IBOutlet weak var desk: UILabel!
-    @IBOutlet weak var webLink: UILabel!
+    @IBOutlet weak var webSite: myButton!
+
+    @IBOutlet weak var viewImage: UIView!
 
     @IBOutlet weak var address: UILabel!
     var detailItem: AnyObject? {
@@ -37,7 +39,6 @@ class DetailViewController: UIViewController {
             forename.text = contact.forename
         }
         if let image = self.image {
-            Swift.print(contact.picture)
             if contact.picture == "" {
                 image.image = UIImage(named: "Silhouette_Portrait")
             }
@@ -48,20 +49,27 @@ class DetailViewController: UIViewController {
                 image.image = myImage
             }
         }
-        if let email = self.mail {
-            email.text = contact.mail
+        if let mail = self.mail {
+            checkButton(mail, text: contact.mail)
         }
         if let phone = self.phone {
-            phone.text = contact.phone
+            checkButton(phone, text: contact.phone)
         }
         if let addr = self.addr {
-            addr.text = contact.address
+            checkButton(addr, text: contact.address)
         }
         if let desk = self.desk {
             desk.text = contact.desk
         }
-        if let webLink = self.webLink {
-            webLink.text = contact.website
+        if let webSite = self.webSite {
+            checkButton(webSite, text: contact.website)
+        }
+    }
+    
+    private func checkButton(sender: UIButton, text: String){
+        sender.setTitle("", forState:  .Normal)
+        if text != "NC" {
+            sender.setTitle(text, forState:  .Normal)
         }
     }
 
@@ -76,7 +84,6 @@ class DetailViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
 
 }
 

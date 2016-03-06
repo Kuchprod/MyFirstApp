@@ -20,6 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as! UINavigationController
         navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
         splitViewController.delegate = self
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "rotated", name: UIDeviceOrientationDidChangeNotification, object: nil)
+        
         return true
     }
 
@@ -55,6 +58,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
             return true
         }
         return false
+    }
+    
+    func rotated(){
+        if(UIDeviceOrientationIsLandscape(UIDevice.currentDevice().orientation)){
+            print("landscape")
+        }
+        if(UIDeviceOrientationIsPortrait(UIDevice.currentDevice().orientation)){
+            print("Portrait")
+        }
     }
 
 }
