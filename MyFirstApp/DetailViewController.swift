@@ -10,26 +10,33 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
-    var contact = Contact()
+    var contact : Contact = Contact()
+    
+    @IBOutlet weak var myScroll: UIScrollView!
+    
+    @IBOutlet weak var nameView: UIView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var forename: UILabel!
+    
+    @IBOutlet weak var imageView: UIView!
     @IBOutlet weak var image: UIImageView!
-    @IBOutlet weak var mail: MailButton!
-    @IBOutlet weak var phone: CallButton!
+    
+    
+    @IBOutlet weak var infoView: UIView!
     @IBOutlet weak var addr: MapButton!
-    @IBOutlet weak var desk: UILabel!
+    @IBOutlet weak var phone: CallButton!
+    @IBOutlet weak var mail: MailButton!
     @IBOutlet weak var webSite: myButton!
-
-    @IBOutlet weak var viewImage: UIView!
-
-    @IBOutlet weak var address: UILabel!
+    @IBOutlet weak var desk: UILabel!
+    
+    
     var detailItem: AnyObject? {
         didSet {
             // Update the view.
             self.configureView()
         }
     }
-
+    
     func configureView() {
         // Update the user interface for the detail item.
         if let name = self.name {
@@ -39,10 +46,7 @@ class DetailViewController: UIViewController {
             forename.text = contact.forename
         }
         if let image = self.image {
-            if contact.picture == "" {
-                image.image = UIImage(named: "Silhouette_Portrait")
-            }
-            else{
+            if contact.picture != "" {
                 let url = NSURL(string: contact.picture)
                 let data = NSData(contentsOfURL: url!)
                 let myImage = UIImage(data: data!)
@@ -73,10 +77,10 @@ class DetailViewController: UIViewController {
         }
     }
 
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
         self.configureView()
     }
 
@@ -84,6 +88,16 @@ class DetailViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    /*
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    // Get the new view controller using segue.destinationViewController.
+    // Pass the selected object to the new view controller.
+    }
+    */
 
 }
 
